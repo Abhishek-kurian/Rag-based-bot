@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qwen RAG // Workspace</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header><div class="brand"><b>RAG</b><div><strong>QWEN // KNOWLEDGE ENGINE</strong><small>RETRIEVAL AUGMENTED GENERATION</small></div></div>
+<div class="top"><span id="status">● SYSTEM READY</span><button id="settings">SETTINGS</button></div></header>
+<main>
+<aside>
+<div class="heading">DOCUMENT WORKSPACE <span id="docCount">0 DOCS</span></div>
+<section><label id="drop" class="drop">+<strong>DROP FILES OR CLICK TO UPLOAD</strong><small>PDF / TXT / MD · MAX 15 MB EACH</small></label><input id="files" type="file" multiple accept=".pdf,.txt,.md" hidden><button id="clearDocs" class="danger">CLEAR KNOWLEDGE BASE</button></section>
+<section><label>INDEXED DOCUMENTS</label><div id="docs"><div class="empty">NO DOCUMENTS INDEXED</div></div></section>
+<section class="stats"><label>CHUNK STORE</label><div>VECTOR COUNT <b id="chunks">0</b></div><div>EMBEDDING <b>MiniLM-L6</b></div><div>VECTOR DB <b>FAISS</b></div><div>LLM <b>Qwen 2.5 3B</b></div></section>
+</aside>
+<section class="chat">
+<div class="bar"><span>● ● ● &nbsp; ai_chat.qwen</span><div><button id="inspect">INSPECT RAG</button><button id="clearChat">CLEAR</button></div></div>
+<div id="messages" class="messages"><div id="welcome" class="welcome"><em>// QWEN RAG SYSTEM</em><h1>Query your documents.</h1><p>Upload PDF, TXT or Markdown files on the left, then ask questions using the AI console. Retrieved chunks and similarity scores can be inspected after every response.</p></div></div>
+<div class="composer"><span>›</span><textarea id="query" rows="3" placeholder="Ask something about your documents..."></textarea><div><small>ENTER TO SEND · SHIFT+ENTER FOR NEW LINE</small><button id="send">EXECUTE →</button></div></div>
+</section>
+</main>
+
+<div id="settingsModal" class="modal hidden"><div class="modalbox"><header> <strong>SYSTEM SETTINGS</strong><button data-close="settingsModal">×</button></header>
+<div class="body"><label>HUGGING FACE ACCESS TOKEN</label><input id="token" type="password" placeholder="hf_••••••••"><small>Optional. Session token overrides the server HF_TOKEN.</small><button id="saveToken">SAVE TOKEN</button><button id="removeToken" class="danger">REMOVE SESSION TOKEN</button><p id="tokenStatus">● USING SERVER CONFIGURATION</p></div></div></div>
+
+<div id="inspectModal" class="modal hidden"><div class="modalbox large"><header><strong>RAG INSPECTOR</strong><button data-close="inspectModal">×</button></header>
+<div class="tabs"><button id="promptTab">RAW PROMPT</button><button id="retrievalTab">RETRIEVED CHUNKS</button></div>
+<pre id="rawPrompt" class="code"></pre><div id="retrieval" class="retrieval hidden"></div></div></div>
+
+<script src="/static/app.js"></script>
+</body></html>
